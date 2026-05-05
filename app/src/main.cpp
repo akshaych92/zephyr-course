@@ -2,6 +2,10 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/sensor.h>
 
+extern "C" {
+#include "our_driver.h"
+}
+
 #define SLEEP_TIME_MS 1000
 
 /* The devicetree node identifier for the "led0" alias. */
@@ -30,6 +34,13 @@ int main(void)
         sensor_channel_get(led, SENSOR_CHAN_ALL, &value);
         LOG_INF("LED reset using the channel get API");
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
+
+        LOG_INF("Toggle count: %d", our_driver_get_toggle_count(led));
+
+        /* Reset the toggle count every 10 toggles using the custom extension API */
+        if (our_driver_get_toggle_count(led) >= 10) {
+            our_driver_reset_toggle_count(led);
+        }
     }
     return 0;
 }
