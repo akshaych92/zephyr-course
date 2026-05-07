@@ -1,11 +1,11 @@
 / {
-    aliases{
-        app-led = &green_led_4;
-    };
+  //  aliases{
+   //     app-led = &green_led_4;
+  //  };
 
     my_sensor: our_sensor {
         compatible = "our,driver";
-        gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
+        gpios = <&gpio4 17 GPIO_ACTIVE_LOW>;
         status = "okay";
     };
 };
