@@ -61,10 +61,15 @@ static int our_driver_led_off_channel_get(const struct device *dev, enum sensor_
 }
 
 /* Custom extension API implementations */
-int our_driver_get_toggle_count(const struct device *dev)
+int our_driver_get_toggle_count(const struct device *dev, int value)
 {
-    const struct our_sensor_driver_data *data = dev->data;
-    return data->toggle_count;
+    struct our_sensor_driver_data *data = dev->data;
+
+    data->toggle_count = value;
+
+    LOG_INF("%s toggle_count set to %d", dev->name, value);
+
+    return 0;
 }
 
 int our_driver_reset_toggle_count(const struct device *dev)

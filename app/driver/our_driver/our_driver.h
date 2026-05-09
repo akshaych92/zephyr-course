@@ -14,7 +14,7 @@ struct our_sensor_driver_data {
  * @param dev  Pointer to the device.
  * @return Current toggle count.
  */
-int our_driver_get_toggle_count(const struct device *dev);
+int our_driver_get_toggle_count(const struct device *dev, int value);
 
 /**
  * @brief Custom extension API: reset the toggle count back to zero.
