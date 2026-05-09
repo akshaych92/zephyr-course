@@ -1,4 +1,7 @@
 if(CONFIG_OUR_DRIVER)
+    if(CONFIG_SHELL)
+        target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/our_driver_shell.c)
+    endif()
     target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/our_driver.c)
     target_include_directories(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 endif()

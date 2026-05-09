@@ -33,7 +33,7 @@ static int our_driver_init(const struct device *dev)
     return 0;
 }
 
-static int our_driver_led_off_fetch(const struct device *dev, enum sensor_channel chan)
+static int our_driver_led_on_fetch(const struct device *dev, enum sensor_channel chan)
 {
     const struct our_sensor_driver_config *config = dev->config;
     struct our_sensor_driver_data *data = dev->data;
@@ -45,7 +45,7 @@ static int our_driver_led_off_fetch(const struct device *dev, enum sensor_channe
     return 0;
 }
 
-static int our_driver_led_on_channel_get(const struct device *dev, enum sensor_channel chan, struct sensor_value *val)
+static int our_driver_led_off_channel_get(const struct device *dev, enum sensor_channel chan, struct sensor_value *val)
 {
     const struct our_sensor_driver_config *config = dev->config;
     struct our_sensor_driver_data *data = dev->data;
@@ -76,8 +76,8 @@ int our_driver_reset_toggle_count(const struct device *dev)
 }
 
 static DEVICE_API(sensor, api_akshay_practice) = {
-    .sample_fetch = our_driver_led_off_fetch,
-    .channel_get = our_driver_led_on_channel_get,
+    .sample_fetch = our_driver_led_on_fetch,
+    .channel_get = our_driver_led_off_channel_get,
 };
 
 #define DEVICE_INST(inst) \
